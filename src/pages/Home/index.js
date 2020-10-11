@@ -1,18 +1,9 @@
 import React from 'react';
-import { Container, Header } from './styles';
-import Input from '../../components/Input';
-import Logo from '../../components/Logo';
-import Button from '../../components/Button';
+import { Container } from './styles';
 
-const Home = () => (
+const Home = ({ children }) => (
   <Container>
-    <Header>
-      <div>
-        <Logo />
-        <Input />
-        <Button title="Entrar" disabled />
-      </div>
-    </Header>
+    {children}
   </Container>
 );
 
