@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 
 
 const ProductsList = (props) => {
-  const { data, loading, error } = useQuery(queries);
-  console.log(data, loading, error, props);
+  // const { data, loading, error } = useQuery(queries);
+  // console.log(data, loading, error, props);
 
   return (
     <Container>
