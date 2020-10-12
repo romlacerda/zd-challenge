@@ -1,10 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Container, CardStyle } from './styles';
 
-
-
 const ProductsList = ({ products }) => {
-  console.log(products, 'prods');
   return (
     <Container>
       { products && products.map(product =>
@@ -13,6 +12,10 @@ const ProductsList = ({ products }) => {
       }
     </Container>
   )
+};
+
+ProductsList.propTypes = {
+  products: PropTypes.shape([]).isRequired,
 };
 
 export default ProductsList;

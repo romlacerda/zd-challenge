@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container } from './styles';
 import { MdAddCircle, MdRemoveCircle } from 'react-icons/md';
 
@@ -20,6 +21,13 @@ const Card = ({ url, title, price, className }) => {
       </div>
     </Container>
   )
+};
+
+Card.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 export default Card;

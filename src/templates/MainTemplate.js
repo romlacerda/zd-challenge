@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import { Container } from './styles';
+import { Container, Footer } from './styles';
 
 const MainTemplate = ({ children }) => {
 
@@ -10,6 +10,7 @@ const MainTemplate = ({ children }) => {
       <Container>
         {children}
       </Container>
+      <Footer />
     </>
   );
 }

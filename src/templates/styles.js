@@ -14,3 +14,9 @@ export const Container = styled.div`
     align-items: center;
   }
 `;
+
+export const Footer = styled.footer`
+  width: 100vw;
+  height: 50px;
+  background-color: #fc3;
+`

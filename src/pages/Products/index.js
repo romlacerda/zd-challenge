@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { graphql, useQuery } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -9,14 +10,14 @@ import MainTemplate from '../../templates/MainTemplate';
 
 const Products = ({ location }) => {
   const [products, setProducts] = useState([]);
+
   const [search, setSearch] = useState('');
 
   const { poc } = location.state[0];
 
   const { data, loading, error } = useQuery(queries, {
-    variables: { id: poc[0].id, search, categoryId: null },
+    variables: { id: poc[0]?.id, search, categoryId: null },
   });
-
 
   useEffect(() => {
     if(!error && !loading) {
@@ -36,7 +37,7 @@ const Products = ({ location }) => {
         <InputStyle onChange={handleChangeSearch} value={search} placeholder="Tá procurando o que?" />
       </SearchBar>
       <Container>
-        { loading ? (<p style={{color: 'black'}}>Carregando...</p>) : (<ProductsList products={products} />) }
+        { loading ? (<p style={{ color: 'black' }}>Carregando...</p>) : (<ProductsList products={products} />) }
       </Container>
     </MainTemplate>
   )
@@ -44,42 +45,46 @@ const Products = ({ location }) => {
 
 
 const queries = gql`
-query poc($id: ID!, $categoryId: Int, $search: String) {
-  poc(id: $id) {
-    id
-    products(categoryId: $categoryId, search: $search) {
+  query poc($id: ID!, $categoryId: Int, $search: String) {
+    poc(id: $id) {
       id
-      title
-      rgb
-      images {
-        url
-      }
-      productVariants {
-        availableDate
-        productVariantId
-        price
-        inventoryItemId
-        shortDescription
+      products(categoryId: $categoryId, search: $search) {
+        id
         title
-        published
-        volume
-        volumeUnit
-        description
-        subtitle
-        components {
-          id
+        rgb
+        images {
+          url
+        }
+        productVariants {
+          availableDate
           productVariantId
-          productVariant {
+          price
+          inventoryItemId
+          shortDescription
+          title
+          published
+          volume
+          volumeUnit
+          description
+          subtitle
+          components {
             id
-            title
-            description
-            shortDescription
+            productVariantId
+            productVariant {
+              id
+              title
+              description
+              shortDescription
+            }
           }
         }
       }
     }
   }
-}
-
 `;
+
+Products.propTypes = {
+  location: PropTypes.shape({}).isRequired,
+};
+
 export default graphql(queries, { name: 'products' })(Products);

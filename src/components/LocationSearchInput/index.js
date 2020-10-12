@@ -22,6 +22,8 @@ const LocationSearchInput = () => {
   }, [coordinates]);
 
   const handleSelect = address => {
+    setAddress(address);
+
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
@@ -32,7 +34,6 @@ const LocationSearchInput = () => {
   };
 
   return (
-
       <PlacesAutocomplete
         value={address}
         onChange={handleChange}
@@ -41,6 +42,7 @@ const LocationSearchInput = () => {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div style={{ display: 'flex', flexDirection: 'column', zIndex: '99' }}>
             <input
+              style={{ border: 0, borderRadius: 0 }}
               {...getInputProps({
                 placeholder: 'Digite uma localização...',
                 className: 'location-search-input',
@@ -48,15 +50,13 @@ const LocationSearchInput = () => {
             />
 
             <div style={{ zIndex: '99', position: 'absolute', marginTop: '40px'}}>
-              {loading && <div>Procurando...</div>}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
                 // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer', color: '#000', padding: '8px', border: '1px solid black'}
-                  : { backgroundColor: '#ffffff', cursor: 'pointer', color: '#000', padding: '8px', border: '1px solid black'};
+                const style = { backgroundColor: '#fafafa', cursor: 'pointer', color: '#000', padding: '8px', border: '1px solid #dcdcdc', fontSize: '12px', width: '500px'};
+
                 return (
                   <div
                     {...getSuggestionItemProps(suggestion, {

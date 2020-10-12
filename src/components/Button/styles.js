@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+`;
 
-  button {
-    height: 42px;
-    border: 0;
-    border-radius: 20px;
+export const ButtonStyle = styled.button`
+  height: 42px;
+  border: 0;
+  border-radius: 20px;
 
-    background: #fc0;
-    color: #2f2f2f;
+  background: ${(props) => props.disabled ? '#dcdcdc' : '#fc0'};
 
-    padding: 0 16px;
-  }
+  color: #2f2f2f;
+
+  padding: 0 16px;
 `;
