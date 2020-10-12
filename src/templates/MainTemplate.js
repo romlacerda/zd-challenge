@@ -8,9 +8,7 @@ const MainTemplate = ({ children }) => {
     <>
       <Header />
       <Container>
-        <div>
-          {children}
-        </div>
+        {children}
       </Container>
     </>
   );

@@ -1,34 +1,42 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { graphql, useQuery } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Container } from './styles';
+import { Container, SearchBar, InputStyle } from './styles';
 import ProductsList from './ProductsList';
 import MainTemplate from '../../templates/MainTemplate';
 
 const Products = ({ location }) => {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState('');
+
   const { poc } = location.state[0];
+
   const { data, loading, error } = useQuery(queries, {
-    variables: { id: poc[0].id, search: '', categoryId: null },
+    variables: { id: poc[0].id, search, categoryId: null },
   });
 
 
   useEffect(() => {
-    console.log(products);
     if(!error && !loading) {
-      console.log(products, 'products')
       setProducts(
         data.poc.products
       );
     }
   }, [data, error, loading])
 
+  const handleChangeSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
   return (
     <MainTemplate>
+      <SearchBar>
+        <InputStyle onChange={handleChangeSearch} value={search} placeholder="Tá procurando o que?" />
+      </SearchBar>
       <Container>
-        <ProductsList products={products}/>
+        { loading ? (<p style={{color: 'black'}}>Carregando...</p>) : (<ProductsList products={products} />) }
       </Container>
     </MainTemplate>
   )
