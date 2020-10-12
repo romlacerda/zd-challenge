@@ -8,7 +8,21 @@ export const Container = styled.div`
     border-radius: 8px;
     color: #000;
     height: 200px;
-  }
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 16px;
+
+    font-size: 14px;
+    text-align: center;
+
+    img {
+      width: 35%;
+      margin-bottom: 16px;
+    }
+  }
 
 `;

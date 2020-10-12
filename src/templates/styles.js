@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  div {
+  &:first-child {
     width: 1000px;
     display: flex;
     justify-content: center;

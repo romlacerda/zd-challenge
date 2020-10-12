@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Container } from './styles';
 import { AppContext } from '../../App';
+import MainTemplate from '../../templates/MainTemplate';
 
 import { graphql, useQuery } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -18,9 +19,11 @@ const Home = ({ children }) => {
   });
   console.log(state, 'aqui');
   return (
-    <Container>
-      {children}
-    </Container>
+    <MainTemplate>
+      <Container>
+        {children}
+      </Container>
+    </MainTemplate>
   )
 };
 

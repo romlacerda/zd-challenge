@@ -1,13 +1,19 @@
 import React from 'react';
 import { Container } from './styles';
 
-const Card = ({ title, price, className }) =>
-  <Container className={className}>
-    <div>
-      <p>{ title }</p>
-      <p>${`R$ ${ price }`}</p>
-      + -
-    </div>
-  </Container>;
+const Card = ({ url, title, price, className }) => {
+  const priceFormatted = price.toString().replace('.', ',');
+
+  return (
+    <Container className={className}>
+      <div>
+        <img src={url} alt={title} />
+        <p>{ title }</p>
+        <p>{`R$ ${ priceFormatted }`}</p>
+        {/* + - */}
+      </div>
+    </Container>
+  )
+};
 
 export default Card;

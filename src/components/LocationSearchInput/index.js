@@ -25,7 +25,6 @@ const LocationSearchInput = () => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
-        console.log('Success', latLng);
         const { lat, lng } = latLng;
         setCoordinates({ lat, lng });
       })
